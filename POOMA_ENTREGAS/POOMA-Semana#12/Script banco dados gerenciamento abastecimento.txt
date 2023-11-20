@@ -1,0 +1,63 @@
+create database GerenciamentoAbastecimento;
+use GerenciamentoAbastecimento;
+
+
+
+create Table setor(
+	id int primary key auto_increment,
+    nome varchar(40)
+);
+
+create Table DonoVeiculo(
+	id int primary key auto_increment,
+    nome varchar(40) not null,
+    idade smallInt not null,
+    telefone varchar(20),
+    cpf varchar(11) not null,
+    fk_setor int,
+    foreign key(fk_setor) references setor(id)
+);
+
+create table veiculo(
+	id int primary key auto_increment,
+    placa varchar(7),
+    cor varchar(20),
+    modelo varchar(40),
+    dono int,
+    foreign key(dono) references DonoVeiculo(id)
+);
+
+create table posto(
+	id int primary key auto_increment,
+    endereco varchar(40),
+    marca varchar(40)
+);
+
+create table tipoGasolina(
+	id int primary key auto_increment,
+    nome varchar(20),
+    valor decimal(9,2)
+);
+
+create table abastecimento(
+	id int primary key auto_increment,
+    responsavel int,
+    veiculo int,
+    posto int,
+    tipoGasolina int,
+    
+    quantidade decimal(9,2),
+    valor decimal(9,2),
+    kmViajados decimal(9,2),
+    mediaKM decimal(9,2),
+    data datetime DEFAULT CURRENT_TIMESTAMP,
+    
+    foreign key(responsavel) references DonoVeiculo(id),
+    foreign key(veiculo) references veiculo(id),
+    foreign key(posto) references posto(id),
+    foreign key(tipoGasolina) references tipoGasolina(id)
+	
+);
+
+insert into setor(nome) values("Contabilidade"),
+("Transporte");
