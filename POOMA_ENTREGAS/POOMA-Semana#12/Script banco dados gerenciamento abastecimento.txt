@@ -85,6 +85,6 @@ insert into veiculo(placa, cor, modelo, dono) values("ABCD-12DS","Azul", "Coroll
 ("ACSF-4213", "Prata", "Skyline", 2);
 
 insert into abastecimento(responsavel, veiculo, posto, tipogasolina, quantidade, valor, kmViajados,mediaKM, data) values
-(1, 1, 1, 1, 12, 50, 60, 7.2,2023-09-17),
-(2,3,2,2,40,200,70,8.2,2023-11-20),
-(3,2,1,1,40,200,90,7.5,2023-11-30);
+(1, 1, 1, 1, 12, 50, 60, 7.2,"2023-09-17"),
+(2,3,2,2,40,200,70,8.2,"2023-11-20"),
+(3,2,1,1,40,200,90,7.5,"2023-11-30");
