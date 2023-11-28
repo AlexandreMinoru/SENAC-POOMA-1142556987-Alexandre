@@ -13,14 +13,14 @@ create Table DonoVeiculo(
     nome varchar(40) not null,
     idade smallInt not null,
     telefone varchar(20),
-    cpf varchar(11) not null,
+    cpf varchar(15) not null,
     fk_setor int,
     foreign key(fk_setor) references setor(id)
 );
 
 create table veiculo(
 	id int primary key auto_increment,
-    placa varchar(7),
+    placa varchar(15),
     cor varchar(20),
     modelo varchar(40),
     dono int,
@@ -50,7 +50,7 @@ create table abastecimento(
     valor decimal(9,2),
     kmViajados decimal(9,2),
     mediaKM decimal(9,2),
-    data datetime DEFAULT CURRENT_TIMESTAMP,
+    data varchar(40),
     
     foreign key(responsavel) references DonoVeiculo(id),
     foreign key(veiculo) references veiculo(id),
@@ -59,5 +59,32 @@ create table abastecimento(
 	
 );
 
+describe DonoVeiculo;
 insert into setor(nome) values("Contabilidade"),
 ("Transporte");
+
+
+insert into setor(nome) values("Financeiro"),
+("TI");
+
+
+insert into donoveiculo(nome, idade, telefone, cpf, fk_setor) values("Lucas",20, "11 952422447","425534213-53", 1),
+("Anna", 30, "11 938271648","265828372-90",3),
+("Dominique",40,"11 743832819","748291748-50",2);
+
+
+insert into tipogasolina(nome, valor) values("Comum", 5.63),
+("Aditivada", 5.82);
+
+insert into posto(marca, endereco) values("Shell", "Santo Amaro"),
+("Petrobras", "Penha"),
+("Ipiranga", "Paulista");
+
+insert into veiculo(placa, cor, modelo, dono) values("ABCD-12DS","Azul", "Corolla",1),
+("SADW-KFLS", "Preto", "Dogdge",3),
+("ACSF-4213", "Prata", "Skyline", 2);
+
+insert into abastecimento(responsavel, veiculo, posto, tipogasolina, quantidade, valor, kmViajados,mediaKM, data) values
+(1, 1, 1, 1, 12, 50, 60, 7.2,2023-09-17),
+(2,3,2,2,40,200,70,8.2,2023-11-20),
+(3,2,1,1,40,200,90,7.5,2023-11-30);
